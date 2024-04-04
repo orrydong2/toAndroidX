@@ -36,5 +36,8 @@ for k in toMap:
     os.system('grep -rl \'' + k + '\' --include "*.xml" ' + nodeModulesDir + ' | xargs sed -i "" "s/' + k + '/' + toMap[k] + '/g"')
 
 for k in toMap:
-    os.system('grep -rl \'' + k + '\' --include "*.java" ' + androidDir + ' | xargs sed -i "" "s/' + k + '/' + toMap[k] + '/g"')
+    # os.system('grep -rl \'' + k + '\' --include "*.java" ' + androidDir + ' | xargs sed -i "" "s/' + k + '/' + toMap[k] + '/g"')
+    os.system('grep -rl \'' + k + '\' --include "*.xml" ' + androidDir + ' | xargs -I {} sed -i -e "s/' + k + '/' + toMap[k] + '/g" {}')
+    os.system('grep -rl \'' + k + '\' --include "*.java" ' + androidDir + ' | xargs -I {} sed -i -e "s/' + k + '/' + toMap[k] + '/g" {}')
+
 print('over')
